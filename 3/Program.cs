@@ -17,15 +17,17 @@ public class Program
             {
                 processor.RemoveFromBuffer();
             }
-
-            currentTime = Math.Max(currentTime, package[0]);
-            currentTime += package[1];
+            var temp = currentTime;
+            currentTime = Math.Max(currentTime, package[0]) + package[1];
             if (!processor.AddToBuffer(currentTime))
+            {
                 Console.WriteLine(-1);
+                currentTime = temp;
+            }
             else
+            { 
                 Console.WriteLine(currentTime - package[1]);
-
-            
+            }
         }
     }
 }
